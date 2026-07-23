@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  mssql-dev:
+  - apiVersion: v2
+    created: "2026-07-23T19:25:29.492916709Z"
+    description: A Helm chart for Kubernetes
+    digest: 43e2609c258186c609a6d377710fad0e6269e452decafb1078a48940e5e638a7
+    name: mssql-dev
+    type: application
+    urls:
+    - https://github.com/zbindenp/mssqlserver/releases/download/mssql-dev-0.1.0/mssql-dev-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-07-23T19:25:29.492921849Z"

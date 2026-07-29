@@ -1,0 +1,79 @@
+otel-stack:
+  opentelemetry-operator:
+    enabled: true
+    manager:
+      collectorImage:
+        repository: otel/opentelemetry-collector-contrib
+        tag: 0.157.0
+      extraArgs: [--enable-go-instrumentation=true]
+    admissionWebhooks:
+      certManager:
+        enabled: false
+      autoGenerateCert:
+        enabled: true
+        recreate: false
+  defaultCRConfig:
+    enabled: true
+    mode: daemonset
+    resources:
+      limits:
+        cpu: 200m
+        memory: 250Mi
+      requests:
+        cpu: 50m
+        memory: 250Mi
+    presets:
+      logsCollection:
+        enabled: true
+      kubeletMetrics:
+        enabled: true
+    config:
+      receivers:
+        otlp:
+          protocols:
+            grpc:
+              endpoint: 0.0.0.0:4317
+            http:
+              endpoint: 0.0.0.0:4318
+        kubeletstats:
+          collection_interval: 10s
+          auth_type: 'serviceAccount'
+          endpoint: '${env:K8S_NODE_NAME}:10250'
+          insecure_skip_verify: true
+          metric_groups:
+            - node
+            - pod
+            - container
+      processors:
+        memory_limiter:
+          check_interval: 1s
+          limit_percentage: 75
+          spike_limit_percentage: 15
+      exporters:
+        debug:
+          verbosity: basic
+      service:
+        pipelines:
+          traces:
+            receivers: [ otlp ]
+            processors: [ memory_limiter ]
+            exporters: [ debug ]
+          metrics:
+            receivers: [ otlp ]
+            processors: [ memory_limiter ]
+            exporters: [ debug ]
+          logs:
+            receivers: [ otlp ]
+            processors: [ memory_limiter ]
+            exporters: [ debug ]
+  collectors:
+    daemon:
+      enabled: false
+
+jaeger:
+  enabled: true
+  jaeger:
+    ingress:
+      enabled: false
+      hosts:
+        - jaeger.example.com

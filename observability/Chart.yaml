@@ -1,0 +1,17 @@
+apiVersion: v2
+name: observability
+description: A Helm chart to create observability on a kubernetes cluster
+
+type: application
+version: 0.1.0
+
+
+dependencies:
+  - name: opentelemetry-kube-stack
+    alias: otel-stack
+    version: "0.20.0"
+    repository: "https://open-telemetry.github.io/opentelemetry-helm-charts"
+  - name: jaeger
+    version: "4.11.1"
+    repository: "https://jaegertracing.github.io/helm-charts"
+    condition: jaeger.enabled

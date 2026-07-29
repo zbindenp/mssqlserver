@@ -1,1 +1,5 @@
 *.iml
+**/test.yaml
+
+
+**/charts/*.tgz

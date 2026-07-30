@@ -6,7 +6,9 @@
 version: 2
 updates:
   - package-ecosystem: "helm" # See documentation for possible values
-    directory: "/mssql-dev" # Location of package manifests
+    directories:
+      - "/mssql-dev"
+      - "/observability"
     schedule:
       interval: "weekly"
 

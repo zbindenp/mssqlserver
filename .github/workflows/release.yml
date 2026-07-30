@@ -26,15 +26,7 @@ jobs:
           helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
           helm repo add jaeger https://jaegertracing.github.io/helm-charts
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.7.0
-        with:
-          charts_dir: '.'
-          skip_existing: true
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-
-      - name: Chart | Push mssql-dev
+      - name: CPublish charts
         uses: bitdeps/helm-oci-charts-releaser@v0.1.5
         with:
             oci_registry: ghcr.io/zbindenp

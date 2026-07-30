@@ -2,6 +2,15 @@ apiVersion: v1
 entries:
   mssql-dev:
   - apiVersion: v2
+    created: "2026-07-30T19:55:17.495031934Z"
+    description: A Helm chart for Kubernetes
+    digest: 0cd225c34b497d452c07fdd1f494046cc8d4a2f532b5c0c124ca2694f26725c6
+    name: mssql-dev
+    type: application
+    urls:
+    - https://github.com/zbindenp/helm-charts/releases/download/mssql-dev-0.1.4/mssql-dev-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
     created: "2026-07-30T05:34:06.757715879Z"
     description: A Helm chart for Kubernetes
     digest: 6e5ba6645f728c310dc2747d5c914af6210a28dc85bcc4e7b87cf80787264ea9
@@ -39,6 +48,24 @@ entries:
     version: 0.1.0
   observability:
   - apiVersion: v2
+    created: "2026-07-30T19:55:17.688649917Z"
+    dependencies:
+    - alias: otel-stack
+      name: opentelemetry-kube-stack
+      repository: https://open-telemetry.github.io/opentelemetry-helm-charts
+      version: 0.20.0
+    - condition: jaeger.enabled
+      name: jaeger
+      repository: https://jaegertracing.github.io/helm-charts
+      version: 4.11.1
+    description: A Helm chart to create observability on a kubernetes cluster
+    digest: 741848d1ad784c096fa89196da0fd7841f3fccbb56ac2005c6b79a9055b451bd
+    name: observability
+    type: application
+    urls:
+    - https://github.com/zbindenp/helm-charts/releases/download/observability-0.1.1/observability-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     created: "2026-07-29T12:50:34.136081853Z"
     dependencies:
     - alias: otel-stack
@@ -56,4 +83,4 @@ entries:
     urls:
     - https://github.com/zbindenp/helm-charts/releases/download/observability-0.1.0/observability-0.1.0.tgz
     version: 0.1.0
-generated: "2026-07-30T05:34:06.757733416Z"
+generated: "2026-07-30T19:55:17.688677759Z"

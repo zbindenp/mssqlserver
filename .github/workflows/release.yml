@@ -38,4 +38,3 @@ jobs:
           charts_dir: .
           skip_existing: true
           mark_as_latest: false
-          skip_gh_release: false

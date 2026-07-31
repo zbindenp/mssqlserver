@@ -45,7 +45,7 @@ spec:
             - name: MSSQL_SA_PASSWORD
               value: {{ .Values.saPassword }}
 
-          {{- with (.Values.resources | default $.Values.defaults.resources) }}
+          {{- with (.Values.resources | default dict) }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}

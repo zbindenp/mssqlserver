@@ -44,7 +44,11 @@ spec:
               value: 'Y'
             - name: MSSQL_SA_PASSWORD
               value: {{ .Values.saPassword }}
-          resources: {}
+
+          {{- with (.Values.resources | default $.Values.defaults.resources) }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           volumeMounts:
             - name: data-volume
               mountPath: /var/opt/mssql

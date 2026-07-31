@@ -1,7 +1,16 @@
 image: "mcr.microsoft.com/mssql/server:2025-latest"
 saPassword: "secure_SA_password"
 storage: "1Gi"
+#resources:
+#  requests:
+#    cpu: "0.1"
+#    memory: "1024Mi"
+#  limits:
+#    cpu: "0.5"
+#    memory: "1024Mi"
+
 # nodePort: 31433
+
 #databases:
 # A secret with the name "<dbname>-connection" with connection details will be published
 #  dbname:
